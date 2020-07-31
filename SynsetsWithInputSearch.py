@@ -1,11 +1,11 @@
 from nltk.corpus import wordnet
-from input import hypernymList
-from input import hypernymList2
+from input import wordList
+from input import wordList2
 
 words = []
 #adds to the current list
-words.append(hypernymList)
-words.append(hypernymList2)
+words.append(wordList)
+words.append(wordList2)
 syns = {w : [] for w in words}
 #variables
 synsets = 0
