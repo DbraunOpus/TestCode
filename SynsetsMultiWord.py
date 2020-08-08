@@ -1,25 +1,17 @@
 from nltk.corpus import wordnet as wn
-from itertools import islice
+from itertools import chain
+from itertools import groupby
 
-synsets = 0
-hypernyms = 0
-instance_hypernysms = 0
+noun_lemmas_in_wordnet = set(chain(*[ss.lemma_names() for ss in wn.all_synsets(pos='n')]))
 
-synsets = synsets+1
-hypernyms = hypernyms+1
-instance_hypernysms = instance_hypernysms+1
+actual_list = []
 
-iterationCounter=0
+list2 = noun_lemmas_in_wordnet
+actual_list.append(list2)
+actual_list = " ".join(list2)
 
-while(iterationCounter<2):
-        for synset in islice(wn.all_synsets('n'), 5):
-            synsets+=1
-            for hypernym in synset.hypernyms():
-                hypernyms+=1
-                for lemma in synset.lemmas():
-                        instance_hypernysms+=1
-                        iterationCounter+=1
+char_list = ['_']
 
-print('Number of synsets',synsets)
-print('Number of hypernyms',hypernyms)
-print('Number of instance_hypernyms',instance_hypernysms)
+res = [ele for ele in list2 if all(ch in ele for ch in char_list)]
+
+print ("The filtered words are : " + str(res))
